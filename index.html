@@ -8,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-br from-[#7b3f00] via-[#c97e4b] to-[#f5e9da] min-h-screen relative overflow-x-hidden text-white">
+<body
+    class="bg-gradient-to-br from-[#7b3f00] via-[#c97e4b] to-[#f5e9da] min-h-screen relative overflow-x-hidden text-white">
     <!-- Beige Light Reflections -->
     <div class="pointer-events-none absolute z-0 rounded-full opacity-35 blur-3xl"
         style="width:400px;height:200px;top:80px;left:60vw;background:radial-gradient(circle,#f5e9da 0%,transparent 80%)">
@@ -18,66 +19,94 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="flex justify-between items-center px-6 py-4 font-bold relative z-10">
+    <nav
+        class="flex justify-between items-center px-6 py-4 font-bold relative z-10 bg-[#7b3f00]/90 backdrop-blur-sm border-b border-[#c97e4b]/30 sticky top-0">
         <div class="text-2xl tracking-wide">A.Angela</div>
         <div class="hidden md:flex gap-8 text-lg">
             <a href="#home" class="hover:text-[#f5e9da] transition">Home</a>
-            <a href="#about" class="hover:text-[#f5e9da] transition">About</a>
+            <!-- <a href="#about" class="hover:text-[#f5e9da] transition">About</a> -->
             <a href="#services" class="hover:text-[#f5e9da] transition">Services</a>
             <a href="#portfolio" class="hover:text-[#f5e9da] transition">Portfolio</a>
-            <a href="#pricing" class="hover:text-[#f5e9da] transition">Pricing</a>
-            <a href="#blog" class="hover:text-[#f5e9da] transition">Blog</a>
+            <a href="./resume.pdf" download="resume.pdf" class="hover:text-[#f5e9da] transition">CV</a>
             <a href="#contact" class="hover:text-[#f5e9da] transition">Contact</a>
         </div>
         <!-- Mobile menu button -->
-        <div class="md:hidden">
-            <button id="menu-btn" class="focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
+        <!-- Mobile menu button removed as requested -->
     </nav>
     <!-- Mobile menu -->
     <div id="mobile-menu"
-        class="md:hidden fixed top-0 left-0 w-full h-full bg-[#7b3f00]/95 flex flex-col items-center justify-center gap-8 text-2xl font-bold z-50 hidden">
-        <a href="#home" class="hover:text-[#f5e9da] transition" onclick="toggleMenu()">Home</a>
-        <a href="#about" class="hover:text-[#f5e9da] transition" onclick="toggleMenu()">About</a>
-        <a href="#services" class="hover:text-[#f5e9da] transition" onclick="toggleMenu()">Services</a>
-        <a href="#portfolio" class="hover:text-[#f5e9da] transition" onclick="toggleMenu()">Portfolio</a>
-        <a href="#pricing" class="hover:text-[#f5e9da] transition" onclick="toggleMenu()">Pricing</a>
-        <a href="#blog" class="hover:text-[#f5e9da] transition" onclick="toggleMenu()">Blog</a>
-        <a href="#contact" class="hover:text-[#f5e9da] transition" onclick="toggleMenu()">Contact</a>
-        <button onclick="toggleMenu()" class="mt-8 text-lg px-6 py-2 bg-[#c97e4b] rounded">Close</button>
+        class="md:hidden fixed top-0 left-0 w-full h-full bg-[#7b3f00]/95 flex flex-col items-center justify-center gap-8 text-2xl font-bold z-50 hidden transition-all duration-300">
+        <a href="#home" class="hover:text-[#f5e9da] transition" onclick="closeMenu()">Home</a>
+        <!-- <a href="#about" class="hover:text-[#f5e9da] transition" onclick="closeMenu()">About</a> -->
+        <a href="#services" class="hover:text-[#f5e9da] transition" onclick="closeMenu()">Services</a>
+        <a href="#portfolio" class="hover:text-[#f5e9da] transition" onclick="closeMenu()">Portfolio</a>
+        <a href="#cv" class="hover:text-[#f5e9da] transition" onclick="closeMenu()">CV</a>
+        <a href="#contact" class="hover:text-[#f5e9da] transition" onclick="closeMenu()">Contact</a>
+        <button onclick="closeMenu()" class="mt-8 text-lg px-6 py-2 bg-[#c97e4b] rounded">Close</button>
+    </div>
+
+    <script>
+        // Mobile menu toggle and close
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            document.body.classList.toggle('overflow-hidden', !menu.classList.contains('hidden'));
+        }
+        function closeMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+        document.getElementById('menu-btn').addEventListener('click', toggleMenu);
+    </script>
+
+    <a href="assets/resume.pdf" target="_blank" rel="noopener"
+        class="inline-block bg-[#7b3f00] hover:bg-[#c97e4b] text-white px-6 py-2 rounded font-bold transition mt-4">
+    </a>
     </div>
 
     <!-- Hero Section -->
-    <section class="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-12 md:py-24 gap-10 relative z-10" id="home">
+    <section class="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-12 md:py-24 gap-10"
+        id="home">
         <div class="hero-text max-w-xl">
             <p class="text-lg md:text-xl mb-2">Hi there!</p>
             <h1 class="text-3xl md:text-5xl font-bold mb-4 leading-tight">
                 I am Angela Adubea<br>
                 <span class="text-[#c97e4b]">A Web Developer</span>
             </h1>
-            <p class="mb-2">I create beautiful and functional websites using modern web technologies. Let's build something amazing together!</p>
-            <p class="mb-6">Experienced in HTML, CSS, JavaScript, and responsive design.</p>
+            <p class="mb-2">I create beautiful and functional websites using modern web technologies. Let's build
+                something amazing together!</p>
+            <p class="mb-6"> in HTML, CSS, JavaScript, React, Tailwindcss and responsive design.</p>
             <div class="flex gap-4 mb-6">
-                <button class="btn btn-primary bg-[#7b3f00] hover:bg-[#c97e4b] text-white px-6 py-2 rounded font-bold transition">HIRE ME</button>
-                <button class="btn btn-secondary bg-white text-[#7b3f00] hover:bg-[#f5e9da] px-6 py-2 rounded font-bold transition">VIEW PORTFOLIO</button>
+                <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
+                    class="btn btn-primary bg-[#7b3f00] hover:bg-[#c97e4b] text-white px-6 py-2 rounded font-bold transition">
+                    HIRE ME
+                </button>
+                <a href="./resume.pdf" download="resume.pdf" view="Angela_Adubea_Resume.pdf" target="_blank"
+                    rel="noopener"
+                    class="btn btn-secondary bg-white text-[#7b3f00] hover:bg-[#f5e9da] px-6 py-2 rounded font-bold transition">
+                    VIEW RESUME
+                </a>
             </div>
             <div class="flex gap-4 text-[#f5e9da] font-semibold">
                 <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"
-                   class="transition hover:text-[#c97e4b] focus:text-[#c97e4b] active:text-[#7b3f00] underline-offset-4 hover:underline">+ FACEBOOK</a>
+                    class="transition hover:text-[#c97e4b] focus:text-[#c97e4b] active:text-[#7b3f00] underline-offset-4 hover:underline">+
+                    FACEBOOK</a>
                 <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"
-                   class="transition hover:text-[#c97e4b] focus:text-[#c97e4b] active:text-[#7b3f00] underline-offset-4 hover:underline">+ TWITTER</a>
+                    class="transition hover:text-[#c97e4b] focus:text-[#c97e4b] active:text-[#7b3f00] underline-offset-4 hover:underline">+
+                    TWITTER</a>
                 <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"
-                   class="transition hover:text-[#c97e4b] focus:text-[#c97e4b] active:text-[#7b3f00] underline-offset-4 hover:underline">+ LINKEDIN</a>
+                    class="transition hover:text-[#c97e4b] focus:text-[#c97e4b] active:text-[#7b3f00] underline-offset-4 hover:underline">+
+                    LINKEDIN</a>
+                <a href="https://github.com/gela349" target="_blank" rel="noopener" aria-label="github"
+                    class="transition hover:text-[#c97e4b] focus:text-[#c97e4b] active:text-[#7b3f00] underline-offset-4 hover:underline">+
+                    GITHUB</a>
             </div>
         </div>
         <div class="hero-img max-w-xs md:max-w-sm flex-shrink-0">
-            <img src="./images/profile.jpg" alt="Web Developer"
-                class="w-56 h-72 md:w-72 md:h-80 object-cover rounded-2xl shadow-xl mx-auto transition-transform duration-300 hover:scale-105"
-                style="filter: brightness(0.95) contrast(1.05) drop-shadow(0 0 10px #c97e4baa) hue-rotate(-10deg) saturate(1.2); background: linear-gradient(to bottom, #c97e4baa, #8a5012aa);">
+            <img src="./images/profile.jpg" alt="Web Developer" class="w-56 h-72 md:w-72 md:h-80 object-cover rounded-2xl shadow-xl mx-auto
+                style=" filter: brightness(0.95) contrast(1.05) drop-shadow(0 0 10px #c97e4baa) hue-rotate(-10deg)
+                saturate(1.2); background: linear-gradient(to bottom, #c97e4baa, #8a5012aa);">
         </div>
     </section>
 
@@ -95,7 +124,7 @@
                 <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
                     alt="UI/UX & Canva" class="w-24 h-24 object-cover rounded-full mb-4 shadow">
                 <h3 class="font-bold mb-2">UI/UX & Canva</h3>
-                <p>Beautiful designs and graphics using Canva and Figma.</p>
+                <p>Designing user-friendly interfaces and graphics using Figma and Canva.</p>
             </div>
             <div class="bg-[#c97e4b]/80 rounded-lg p-6 shadow-lg flex flex-col items-center">
                 <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80"
@@ -105,11 +134,53 @@
             </div>
         </div>
     </section>
-
     <!-- Portfolio Section -->
     <section id="portfolio" class="px-6 md:px-16 py-12">
         <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[#f5e9da]">Portfolio</h2>
         <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Elvento Project -->
+            <div class="bg-[#c97e4b]/80 rounded-lg p-6 shadow-lg flex flex-col items-center h-full">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80"
+                    alt="Elvento Event Management" class="w-full h-40 object-cover rounded mb-4 shadow">
+                <h3 class="font-bold mb-2">Elvento - Event Management</h3>
+                <p class="mb-4 flex-grow">A modern event management platform with booking and scheduling features.</p>
+                <a href="https://elvento.netlify.app/" target="_blank" rel="noopener"
+                    class="bg-[#7b3f00] hover:bg-[#f5e9da] hover:text-[#7b3f00] text-white px-4 py-2 rounded font-bold transition mb-2">
+                    View Live Site
+                </a>
+                <span class="text-xs italic text-[#f5e9da]">Live event management solution</span>
+            </div>
+
+            <!-- Inkwell Hall Project -->
+            <div class="bg-[#f5e9da]/80 rounded-lg p-6 shadow-lg flex flex-col items-center text-[#7b3f00] h-full">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80"
+                    alt="Inkwell Hall Library" class="w-full h-40 object-cover rounded mb-4 shadow">
+                <h3 class="font-bold mb-2">Inkwell Hall - Digital Library</h3>
+                <p class="mb-4 flex-grow">A modern digital library platform for book browsing and reading management.
+                </p>
+                <a href="https://inkwell-hall.netlify.app/" target="_blank" rel="noopener"
+                    class="bg-[#7b3f00] hover:bg-[#c97e4b] text-white px-4 py-2 rounded font-bold transition mb-2">
+                    View Live Site
+                </a>
+                <span class="text-xs italic text-[#7b3f00]">Interactive library experience</span>
+            </div>
+
+            <!-- chimerical-empanada -->
+            <div class="bg-[#f5e9da]/80 rounded-lg p-6 shadow-lg flex flex-col items-center text-[#7b3f00] h-full">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80"
+                    alt="Inkwell Hall Library" class="w-full h-40 object-cover rounded mb-4 shadow">
+                <h3 class="font-bold mb-2">chimerical-empanada - Digital Library</h3>
+                <p class="mb-4 flex-grow">A modern digital library platform for book browsing and reading management.
+                </p>
+                <a href="https://chimerical-empanada-45dd5f.netlify.app//" target="_blank" rel="noopener"
+                    class="bg-[#7b3f00] hover:bg-[#c97e4b] text-white px-4 py-2 rounded font-bold transition mb-2">
+                    View Live Site
+                </a>
+                <span class="text-xs italic text-[#7b3f00]">Interactive library experience</span>
+            </div>
+
+
             <!-- Personal Portfolio -->
             <div class="bg-[#c97e4b]/80 rounded-lg p-6 shadow-lg flex flex-col items-center">
                 <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
@@ -128,8 +199,8 @@
             </div>
             <!-- Blog Platform (Image instead of video) -->
             <div class="bg-[#c97e4b]/80 rounded-lg p-6 shadow-lg flex flex-col items-center">
-                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
-                    alt="Blog Platform" class="w-full h-40 object-cover rounded mb-4 shadow">
+                <img src="./images/profile.jpg" alt="Blog Platform"
+                    class="w-full h-40 object-cover rounded mb-4 shadow">
                 <h3 class="font-bold mb-2">Blog Platform <span class="text-xs font-normal">(Image Demo)</span></h3>
                 <p>Simple blog platform with post creation, editing, and comments.</p>
                 <span class="text-xs italic mt-2 text-[#f5e9da]">A clean and modern blog interface</span>
@@ -137,43 +208,8 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="px-6 md:px-16 py-12 bg-[#7b3f00]/10">
-        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[#f5e9da]">Pricing</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-[#c97e4b]/80 rounded-lg p-6 shadow-lg flex flex-col items-center">
-                <h3 class="font-bold mb-2">Basic</h3>
-                <p class="mb-2">Portfolio or landing page</p>
-                <span class="text-2xl font-bold mb-2">$100</span>
-                <ul class="mb-2 text-sm">
-                    <li>✔ 1 Page</li>
-                    <li>✔ Responsive Design</li>
-                </ul>
-            </div>
-            <div class="bg-[#f5e9da]/80 rounded-lg p-6 shadow-lg flex flex-col items-center text-[#7b3f00]">
-                <h3 class="font-bold mb-2">Standard</h3>
-                <p class="mb-2">Small business website</p>
-                <span class="text-2xl font-bold mb-2">$250</span>
-                <ul class="mb-2 text-sm">
-                    <li>✔ Up to 5 Pages</li>
-                    <li>✔ Contact Form</li>
-                    <li>✔ Basic SEO</li>
-                </ul>
-            </div>
-            <div class="bg-[#c97e4b]/80 rounded-lg p-6 shadow-lg flex flex-col items-center">
-                <h3 class="font-bold mb-2">Premium</h3>
-                <p class="mb-2">E-commerce or advanced site</p>
-                <span class="text-2xl font-bold mb-2">$500</span>
-                <ul class="mb-2 text-sm">
-                    <li>✔ Unlimited Pages</li>
-                    <li>✔ Custom Features</li>
-                    <li>✔ Priority Support</li>
-                </ul>
-            </div>
-        </div>
-    </section>
 
-    <!-- Blog Section -->
+    <!-- Blog Section
     <section id="blog" class="px-6 md:px-16 py-12">
         <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[#f5e9da]">Blog</h2>
         <div class="grid md:grid-cols-2 gap-8">
@@ -186,7 +222,7 @@
                 <p>Discover how to use variables, data types, and conditional statements to make your site interactive.</p>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Contact Section -->
     <section id="contact" class="px-6 md:px-16 py-12 bg-[#7b3f00]/10">
@@ -213,14 +249,27 @@
         </form>
     </section>
 
-    <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-        document.getElementById('menu-btn').addEventListener('click', toggleMenu);
-    </script>
+    <footer class="bg-[#7b3f00] text-[#f5e9da] py-6 mt-12 border-t border-[#c97e4b]/30">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-lg font-bold">
+                &copy; 2025 Angela Adubea. All rights reserved.
+            </div>
+            <div class="flex gap-4 text-xl">
+                <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"
+                    class="hover:text-[#c97e4b] transition">Facebook</a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"
+                    class="hover:text-[#c97e4b] transition">Twitter</a>
+                <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"
+                    class="hover:text-[#c97e4b] transition">LinkedIn</a>
+                <a href="https://github.com/gela349" target="_blank" rel="noopener" aria-label="GitHub"
+                    class="hover:text-[#c97e4b] transition">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
 </body>
 
 </html>
